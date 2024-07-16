@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use app\Http\Controllers\ProductController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,7 +13,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', 'HomeController@index');
-Route::get('/products', 'ProductController@index');
-Route::post('/products/new', 'ProductController@new');
-Route::post('/products/delete', 'ProductController@delete');
+// Home route
+
+Route::get('/', [HomeController::class, 'index'])->name('home');
+
+// Products route
+
+Route::prefix('products')->name('products.')->group(function () {
+    Route::get('/', [ProductController::class, 'index'])->name('index');
+    Route::post('/new', [ProductController::class, 'new'])->name('new');
+    Route::post('/delete', [ProductController::class, 'delete'])->name('delete');
+});

@@ -16,7 +16,7 @@ class ProductController extends Controller
 
     public function new(Request $request)
     {
-        DB::insert("INSERT INTO products (name) VALUES ('".$request->name."')");
+        DB::insert("INSERT INTO products (name, description) VALUES ('$request->name., $request->description')");
 
         return redirect('/products')->with('status', 'Product saved');
     }
