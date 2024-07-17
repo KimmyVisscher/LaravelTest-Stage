@@ -19,7 +19,7 @@ class ProductController extends Controller
         try {
 
             $validatedData = $request->validate([
-                'name' => 'required|string|max:255',
+                'name' => 'required|string|max:255|unique:products,name',
                 'description' => 'required|string|max:1000',
             ]);
 

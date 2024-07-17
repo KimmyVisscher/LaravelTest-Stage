@@ -7,19 +7,19 @@ Gelieve deze respository te klonen en je wijzigingen voor elk onderdeel vast te 
 
 ## Deel 1
 
-* Verbeter de routing die in de site wordt gebruikt.
+* Verbeter de routing die in de site wordt gebruikt. *
 * Voeg validatie toe aan het nieuwe productproces en zorg ervoor dat de naam van het product uniek is.
 
 ## Deel 2
 
-* Los alle veiligheidsproblemen op die je opmerkt in de controller.
+* Los alle veiligheidsproblemen op die je opmerkt in de controller. *
 * Los eventuele beveiligingsproblemen op, bugs/verbeteringen aan de blade templates (maak je geen zorgen over de lay-out en styling).
 
 ## Deel 3
 
-Momenteel doet het veld "beschrijving" in het formulier niets.
+Momenteel doet het veld "beschrijving" in het formulier niets. *
 
-* Gelieve de producttabel te updaten om een "description" veld op te nemen, en het in te vullen vanuit dit formulier.
+* Gelieve de producttabel te updaten om een "description" veld op te nemen, en het in te vullen vanuit dit formulier. *
 
 ## Deel 4
 
