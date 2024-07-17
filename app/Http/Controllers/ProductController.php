@@ -2,13 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use App\Product;
-use App\User;
+use App\Service\ProductService;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
 class ProductController extends Controller
 {
+
+    protected $productService;
+
+    public function __construct(ProductService $productService)
+    {
+        $this->productService = $productService;
+    }
+
     public function index()
     {
         return view('products.index');
@@ -16,17 +22,14 @@ class ProductController extends Controller
 
     public function new(Request $request)
     {
+        $validatedData = $request->validate([
+            'name' => 'required|string|max:255|unique:products,name',
+            'description' => 'required|string|max:1000',
+        ]);
+
         try {
 
-            $validatedData = $request->validate([
-                'name' => 'required|string|max:255|unique:products,name',
-                'description' => 'required|string|max:1000',
-            ]);
-
-            DB::table('products')->insert([
-                'name' => $validatedData['name'],
-                'description' => $validatedData['description']
-            ]);
+            $this->productService->createProduct($validatedData);
 
             return redirect('/products')->with('status', 'Product saved');
             
@@ -41,14 +44,14 @@ class ProductController extends Controller
     public function delete(Request $request)
     {
 
+        $validatedData = $request->validate([
+            'id' => 'required|integer|exists:products,id',
+        ]);
+
         try {
 
-            $validatedData = $request->validate([
-                'id' => 'required|integer|exists:products,id',
-            ]);
-    
-            DB::table('products')->where('id', $validatedData['id'])->delete();
-
+           $this->productService->deleteProduct($validatedData['id']);
+            
             return redirect('/products')->with('status', 'Product was deleted');
             
         } catch (\Throwable $th) {
